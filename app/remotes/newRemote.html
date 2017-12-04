@@ -1,0 +1,82 @@
+<div id="remote" class="layout-column">
+    <section class="layout-column">
+        <div class="layout-row">
+            <button is=powertv? class="round shiny">settings_power</button>
+            <span class="flex"></span>
+            <button is=power class="round shiny">power_settings_new</button>
+        </div>
+        <div class="layout-row layout-align-center-end flex low">
+            <button is=menu class="round big bevel shiny">home</button>
+        </div>
+    </section>
+    <section class="layout-column">
+        <div class="layout-row">
+            <button is=guide class="round rectangle">view_compact</button>
+            <span class="flex"></span>
+            <button is=ondemand class="round rectangle">live_tv</button>
+        </div>
+        <div class="flex"></div>
+        <div class="group round">
+            <button is=enter class="round shiny big center">OK</button>
+            <button is=up class="quarter" data-icon="keyboard_arrow_up"></button>
+            <button is=right class="quarter" data-icon="keyboard_arrow_right"></button>
+            <button is=left class="quarter" data-icon="keyboard_arrow_left"></button>
+            <button is=down class="quarter" data-icon="keyboard_arrow_down"></button>
+        </div>
+        <div class="layout-row">
+            <button is=back class="round rectangle">keyboard_return</button>
+            <span class="flex"></span>
+            <button is=contextmenu class="round rectangle">more_horiz</button>
+        </div>
+    </section>
+    <section class="layout-column">
+        <div class="layout-row layout-align-center-end flex high">
+            <button is=voiceactivation class="round big bevel shiny">mic</button>
+        </div>
+        <div class="layout-row layout-align-center-end flex">
+            <div class="updown layout-column">
+                <button is=volumeup class="flex">volume_up</button>
+                <button is=volumedown class="flex">volume_down</button>
+            </div>
+            <span class="flex"></span>
+            <button is=record class="round red">fiber_manual_record</button>
+            <span class="flex"></span>
+            <div class="updown layout-column">
+                <button is=chup class="flex">keyboard_arrow_up</button>
+                <button is=chdown class="flex">keyboard_arrow_down</button>
+            </div>
+        </div>
+        <div class="layout-row layout-align-center-end flex">
+            <button is=rwnd class="round bevel">fast_rewind</button>
+            <span class="flex"></span>
+            <button is=playpause class="round bevel">play_arrow</button>
+            <span class="flex"></span>
+            <button is=ffwd class="round bevel">fast_forward</button>
+        </div>
+    </section>
+    <section>
+        <div class="layout-row">
+            <button is=1 class="rectangle flex text">1</button>
+            <button is=2 class="rectangle flex text">2</button>
+            <button is=3 class="rectangle flex text">3</button>
+        </div>
+        <div class="layout-row">
+            <button is=4 class="rectangle flex text">4</button>
+            <button is=5 class="rectangle flex text">5</button>
+            <button is=6 class="rectangle flex text">6</button>
+        </div>
+        <div class="layout-row">
+            <button is=7 class="rectangle flex text">7</button>
+            <button is=8 class="rectangle flex text">8</button>
+            <button is=9 class="rectangle flex text">9</button>
+        </div>
+        <div class="layout-row">
+            <button is=mute class="rectangle flex">volume_off</button>
+            <button is=0 class="rectangle flex text">0</button>
+            <button is=? class="rectangle flex">input</button>
+        </div>
+    </section>
+    <section class="flex layout-column layout-align-center-center">
+        <input id="inputIp" type="text" placeholder="127.0.0.1" required pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$" />
+    </section>
+</div>

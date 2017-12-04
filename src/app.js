@@ -1,35 +1,81 @@
+'use strict';
+
+import "./stylesheets/rcu.css";
 import "./stylesheets/main.css";
 
-// Small helpers you might want to keep
-import "./helpers/context_menu.js";
-import "./helpers/external_links.js";
+import Request from './request';
+import { BrowserWindow } from "electron";
+import Keys from './keys';
 
-// ----------------------------------------------------------------------------
-// Everything below is just to show you how it works. You can delete all of it.
-// ----------------------------------------------------------------------------
+const config = {
+    remote: 'remotes/newRemote.html',
+    get ip() {
+        const el = document.getElementById('inputIp');
+        if (el) {
+            return el.value;
+        }
+        return '';
+    },
+    set ip(v) {
+        const el = document.getElementById('inputIp');
+        if (el) {
+            el.value = v;
+            return true;
+        }
+        return false;
+    },
+    get KEY_STATES() {
+        return {
+            DOWN: 8000,
+            UP: 8100
+        }
+    },
+    port: 10014,
+    getUrl(keyCode, keyState) { return `http://${this.ip}:${this.port}/keyinjector/emulateuserevent/${keyCode}/${keyState}` },
+    keys: new Keys([
+        {
+            key: 'Power',
+            keybinding: 'esc',
+            keyCode: 128
+        }
+    ])
+}
+const request = new Request({ method: Request.METHODS.PUT });
+function sendKey(keyCode) {
+    return request.put({ url: config.getUrl(keyCode, config.KEY_STATES.DOWN) }).promise
+        .then(data => console.debug('Sendkey KEYDOWN response', data) || data)
+        .then(data => request.put({ url: config.getUrl(keyCode, config.KEY_STATES.UP) }).promise)
+        .then(data => console.debug('Sendkey KEYUP response', data) || data)
+        .catch(err => console.warn('SendKey failed', err));
+}
+function remoteClickHandler({ target }) {
+    const on = () => target.classList.toggle('loading'), off = on;
+    const onError = (err) => console.warn('FAILED KeyPress', err) || off();
 
-import { remote } from "electron";
-import jetpack from "fs-jetpack";
-import { greet } from "./hello_world/hello_world";
-import env from "env";
-
-const app = remote.app;
-const appDir = jetpack.cwd(app.getAppPath());
-
-// Holy crap! This is browser window with HTML and stuff, but I can read
-// files from disk like it's node.js! Welcome to Electron world :)
-const manifest = appDir.read("package.json", "json");
-
-const osMap = {
-  win32: "Windows",
-  darwin: "macOS",
-  linux: "Linux"
-};
-
-document.querySelector("#app").style.display = "block";
-document.querySelector("#greet").innerHTML = greet();
-document.querySelector("#os").innerHTML = osMap[process.platform];
-document.querySelector("#author").innerHTML = manifest.author;
-document.querySelector("#env").innerHTML = env.name;
-document.querySelector("#electron-version").innerHTML =
-  process.versions.electron;
+    on();
+    sendKey(target.dataset.keyCode)
+        .then(off)
+        .catch(onError)
+}
+function renderRemote(container) {
+    console.log(request);
+    request.get({ url: config.remote }).promise
+    .then((remoteTemplate) => {
+        container.innerHTML = remoteTemplate;
+        return container;
+    })
+    .then(setupButtons);
+}
+function setupButtons(contaier) {
+    const buttons = contaier.querySelectorAll(`button`);
+    buttons.forEach(btn => {
+        btn.addEventListener('click', (evt) => {
+            const keyCode = btn.getAttribute('is');
+            const key = config.keys.findByKeyCode(keyCode);
+            console.log('click', keyCode, key);
+            sendKey(keyCode);
+        });
+    });
+}
+const container = document.body;
+renderRemote(container);

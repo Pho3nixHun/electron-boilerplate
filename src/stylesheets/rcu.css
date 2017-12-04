@@ -1,0 +1,201 @@
+
+#inputIp {
+    text-align: center;
+    background: none;
+    border: none;
+    font-size: 13pt;
+    font-family: 'Courier New', 'Courier', 'monospace';
+    color: white;
+}
+#inputIp:focus{
+    outline: none;
+    color: aqua;
+}
+  #remote {
+    -webkit-user-select: none;
+    height: 100vh;
+    width: 25vh;
+    background: rgb(0,0,0);
+    display: block;
+    border-radius: 6vh;
+    border: 2px solid darkgrey;
+    overflow: hidden;
+  }
+
+  #remote > section {
+    -webkit-app-region: drag;
+  }
+  
+  #remote > section * {
+    -webkit-app-region: no-drag;
+  }
+
+  #remote > section {
+    position: relative;
+    padding: 0 2.5vh 0 2.5vh;
+    background: rgba(17,17,17,.5);
+  }
+
+  #remote > section:nth-of-type(1) {
+    padding-top: 2.75vh;
+    background: linear-gradient(100deg, 
+      rgba(76,76,76,.5) 0%,
+      rgba(89,89,89,.5) 12%,
+      rgba(102,102,102,.5) 25%,
+      rgba(71,71,71,.5) 39%,
+      rgba(44,44,44,.5) 50%,
+      rgba(17,17,17,.5) 60%
+    );
+    height: 19.5vh;
+    border-radius: 6vh 6vh 0 0;
+  }
+  #remote > section:nth-of-type(2) {
+    height: 30vh;
+    padding: 0.5vh 1.5vh 0.5vh 1.5vh;
+  }
+  #remote > section:nth-of-type(3) {	
+    height: 23.5vh;
+    padding-top: 7.5vh;
+    padding-bottom: 1.75vh;
+  }
+  #remote > section:nth-of-type(4) {
+    height: 20vh;
+    padding: 1vh 1vh 1vh 1vh;
+  }
+
+  .low {
+    margin-top: 20vh;
+  }
+
+  .high {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: -2.25vh;
+  }
+
+  button {
+    border-style: solid;
+    border-color: rgba(102,102,102,.5);
+    border-width: 2px;
+    background: none;
+    width: 5.5vh;
+    height: 5.5vh;
+    font-family: 'Material Icons';
+    font-size: 3vh;
+    color: white;
+  }
+  button:active {
+    border-width: 1px;
+    outline: 1px solid transparent;
+  }
+  button:focus { 
+    outline: none;
+  }
+
+  .round {
+    border-radius: 100vh;
+  }
+
+  .red {
+    color: red;
+  }
+
+  button.big {
+    background: rgba(12,12,12,1);
+    border: 0.25vh solid rgba(102,102,102,.5);
+    width: 7vh;
+    height: 7vh;
+    font-size: 3.5vh;
+    z-index: 3;
+  }
+
+  button.shiny {
+    background: black;
+    background: linear-gradient(105deg, 
+      rgba(38,38,38,1) 0%,
+      rgba(45,45,45,1) 12%,
+      rgba(51,51,51,1) 25%,
+      rgba(35,35,35,1) 39%,
+      rgba(22,22,22,1) 50%,
+      rgba(8,8,8,1) 60%
+    );
+  }
+  
+  button.bevel {
+    border-width: 2px;
+    border-style: inset;
+  }
+  button.bevel:active {
+    border-style: outset;
+  }
+
+  button.rectangle {
+    width: 6vh;
+    height: 5vh;
+    background: none;
+  }
+
+  button.rectangle.round {
+    width: 6vh;
+    height: 5vh;
+    border-radius: 1.5vh;
+  }
+
+  button.text {
+    font-family: 'Arial';
+  }
+
+  .group.round {
+    height: 20vh;
+    width: 20vh;
+    background: rgba(53,53,53,.1);
+    border: 2px solid rgba(53,53,53,.2);
+    position: absolute;
+    margin-top: 4.5vh;
+    margin-left: 0.5vh;
+    transform: rotate(45deg);
+  }
+  .group.round .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -3.5vh;
+    margin-top: -3.5vh;
+    font-size: 2vh;
+    transform: rotate(-45deg);
+  }
+  .quarter {
+    border: none;
+    border-radius: 100vh 0 0 0;
+    display: inline-block;
+    width: 50%;
+    height: 50%;
+  }
+  .quarter:after {
+    content: attr(data-icon);
+    display: block;
+    transform: rotate(-45deg);
+  }
+  .quarter:nth-of-type(1) {
+    border-radius: 100vh 0 0 0;
+  }
+  .quarter:nth-of-type(2) {
+    border-radius: 0 100vh 0 0;
+  }
+  .quarter:nth-of-type(3) {
+    border-radius: 0 0 100vh 0;
+  }
+  .quarter:nth-of-type(4) {
+    border-radius: 0 0 0 100vh;
+  }
+  .updown {
+    height: 13vh;
+    width: 5.5vh;
+    border-radius: 6vh;
+    overflow: hidden;
+    border: 1px solid rgba(102,102,102,.5);
+  }
+  .updown > button {
+    border: none;
+  }

@@ -4,21 +4,11 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background: rgba(0,0,0,0);
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: sans-serif;
-  color: #525252;
-}
-
-a {
-  text-decoration: none;
-  color: #cb3837;
-}
-
-.container {
-  text-align: center;
+img {
+  top: 7px;
+  height: 78vh;
+  z-index: 2;
 }

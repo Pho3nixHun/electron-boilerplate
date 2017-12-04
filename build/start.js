@@ -5,16 +5,12 @@ const config = require("./webpack.app.config");
 
 const env = "development";
 const compiler = webpack(config(env));
-let electronStarted = false;
+let watcher;
+if (process.argv[2] === "-w") {
+    watcher = compiler.watch({});
+} else {
+    compiler.run((err, stats) => {
+        process.exit(err ? 255 : 0)
+    });
+}
 
-const watching = compiler.watch({}, (err, stats) => {
-  if (!err && !stats.hasErrors() && !electronStarted) {
-    electronStarted = true;
-
-    childProcess
-      .spawn(electron, ["."], { stdio: "inherit" })
-      .on("close", () => {
-        watching.close();
-      });
-  }
-});
